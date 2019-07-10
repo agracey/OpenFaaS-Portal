@@ -77,7 +77,7 @@ class StyledClosableModal extends React.Component {
         <Button onClick={this.props.handleClose} color="secondary">
           {this.props.closeText || 'Close Dialog'}
         </Button>
-        <Button onClick={this.props.handleClose} color="primary">
+        <Button onClick={this.props.handleSubmit} color="primary">
           {this.props.submitText || 'Submit'}
         </Button>
       </DialogActions>

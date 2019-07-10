@@ -62,7 +62,6 @@ class FunctionStore extends React.Component {
     };
 
     handleClose = (event, reason) => {
-        console.log(event,reason)
         if (reason === 'clickaway') {
             return;
         }
@@ -124,7 +123,7 @@ class FunctionStore extends React.Component {
                             </Tooltip>
                         </a>
                         <Tooltip title="Deploy" placement="top" aria-label="deploy">
-                            <IconButton onClick={event => this.props.deployStoreFunction(event, func)}>
+                            <IconButton onClick={event => this.props.deployStoreFunction(func)}>
                                 <PlaylistAddIcon />
                             </IconButton>
                         </Tooltip>

@@ -20,8 +20,9 @@ export function loadStoreFunctions() {
 }
 
 
-export function deployStoreFunction(event, func) {
+export function deployStoreFunction(func) {
   return dispatch => {
+    console.log('deploying', func)
 
     dispatch({
       type: 'FUNCTION_DEPLOY',

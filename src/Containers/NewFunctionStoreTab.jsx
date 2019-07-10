@@ -23,6 +23,9 @@ class NewFunctionStoreTab extends React.Component{
     this.props.loadStoreFunctions()
   }
 
+  handleFunctionSelect(func) {
+    this.props.handleFunctionChange(func)
+  }
   
 
   render() {
@@ -35,6 +38,7 @@ class NewFunctionStoreTab extends React.Component{
       </div>
     )
   }
+  
 
   handleSearchChange(event) {
     this.setState({searchText:event.target.value})
@@ -54,6 +58,7 @@ class NewFunctionStoreTab extends React.Component{
               value={this.state.searchText}
               onChange={this.handleSearchChange.bind(this)}
               margin="normal"
+              fullWidth={true}
             />
           </Grid>
         </Grid>
@@ -77,8 +82,14 @@ class NewFunctionStoreTab extends React.Component{
   }
 
   renderFunctionLine(func, idx) {
+
+    const selected = this.props.function && (this.props.function.name == func.name)
+
     return (
-      <ListItem>
+      <ListItem 
+        onClick={this.handleFunctionSelect.bind(this, func)}
+        selected={selected}
+      >
         <ListItemAvatar >
           <Avatar src={func.icon}/>
         </ListItemAvatar>

@@ -1,4 +1,7 @@
 import React from 'react';
+import {connect} from 'react-redux'
+import { deployStoreFunction } from '../actions/functionStore'
+
 import Grid from '@material-ui/core/Grid';
 import Button from '@material-ui/core/Button';
 import StyledClosableModal from '../Presentational/StyledClosableModal';
@@ -22,7 +25,9 @@ class NoFunctions extends React.Component {
   }
 
   deployNewFunction() {
-    this.setState({newFunction:null})
+    // TODO Only close on success. Do I need to move newFunction into redux? Seem like overkill...
+    this.props.deployStoreFunction(this.state.newFunction)
+    this.closeNewFunction()
   }
 
   handleFunctionChange(newFunction) {
@@ -48,11 +53,12 @@ class NoFunctions extends React.Component {
             <StyledClosableModal 
               open={this.state.newFunction != null}
               handleClose={this.closeNewFunction.bind(this)}
+              handleSubmit={this.deployNewFunction.bind(this)}
               title={'Deploy New Function'}
               submitText={'Deploy'}
             >
                 <NewFunctionForm 
-                  function={this.state.function}
+                  function={this.state.newFunction}
                   handleFunctionChange={this.handleFunctionChange.bind(this)}
                 />
             </StyledClosableModal>
@@ -61,4 +67,13 @@ class NoFunctions extends React.Component {
   }
 }
 
-export default NoFunctions;
+const mapStateToProps = (state, ownProps) => ({})
+
+const mapDispatchToProps = {
+  deployStoreFunction
+}
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(NoFunctions)
